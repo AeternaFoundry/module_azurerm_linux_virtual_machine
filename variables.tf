@@ -243,14 +243,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.linux_virtual_machines : (
-        v.admin_username == null || (length(v.admin_username) <= 64)
-      )
-    ])
-    error_message = "[from computeValidate.LinuxAdminUsername: invalid when len(value) > 64]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.linux_virtual_machines : (
         v.os_disk.disk_size_gb == null || (v.os_disk.disk_size_gb >= 0 && v.os_disk.disk_size_gb <= 4095)
       )
     ])
@@ -384,6 +376,6 @@ EOT
     ])
     error_message = "must not be empty"
   }
-  # Note: 65 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 57 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
